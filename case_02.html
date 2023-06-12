@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Case_02</title>
+    <link rel="stylesheet" href="case_02.css">
+
+    <style>
+        body{
+            background-color: black;
+        }
+
+        #light_panel{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+
+            margin: auto;
+
+            max-width: fit-content;
+            max-height: fit-content;
+        }
+
+        #light_panel .light{
+            width: 50px;
+            height: 20px;
+            border: 1px solid white;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        #btn-panel{
+            position: absolute;
+            left: 0px;
+            right: 0;
+            top: 70px;
+            bottom: 0;
+
+            margin: auto;
+
+            width: fit-content;
+            height: fit-content;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+<section id="light_panel">
+
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+
+</section>
+
+<section id="btn-panel">
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+</section>
+
+<script src="lib/JQuery/jquery-3.6.4.min.js"></script>
+
+<script>
+
+    var light_number = 0;
+    var direction = "RIGHT"
+    var intervalID = null;
+
+    var lights = $('.light');
+    console.log(lights);
+
+    function updatelight(){
+        console.log("updated");
+       /* $('.light').css({background : 'yellow'});*/
+
+
+        if (light_number > 0){
+            lights[light_number -1].style.background = 'red';
+
+        }
+
+        if (direction === 'RIGHT'){
+            light_number++;
+        }
+    }
+    $('#start').on('click',()=>{
+        intervalID = setInterval(updatelight,500);
+    });
+
+    $('#stop').on('click',()=>{
+        clearInterval(intervalID);
+    });
+
+</script>
+</body>
+</html>
